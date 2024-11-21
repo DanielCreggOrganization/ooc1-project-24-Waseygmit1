@@ -5,14 +5,14 @@ public class Pizza {
     // Instance Variables
     private int pizzaId; // Unique ID
     private String toppings;
-    private float price;
+    private float priceEur;
     private boolean isVegan;
 
     // Constructor
     public Pizza(int pizzaId , String toppings , float price , boolean isVegan){
         this.pizzaId = pizzaId;
         this.toppings = toppings;
-        this.price = price;
+        this.priceEur = price;
         this.isVegan = isVegan;
     }
 
@@ -35,11 +35,11 @@ public class Pizza {
     }
      
     public float getPrice(){
-        return this.price;
+        return this.priceEur;
     }
 
     public void setPrice(float price){
-        this.price = price;
+        this.priceEur = price;
     }
 
     public boolean getIsVegan(){
