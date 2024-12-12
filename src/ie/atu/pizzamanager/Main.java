@@ -39,13 +39,20 @@ public class Main {
         String toppings = userInput.next();
         System.out.println("Enter Pizza Price:");
         float priceEur = userInput.nextFloat();
-        System.out.println("Is Pizza Vegan? (Yes/No):");
+        System.out.println("Is Pizza Vegan? (true/false1):");
         boolean isVegan = userInput.nextBoolean();
 
         // Create Pizza Object
         Pizza myPizza = new Pizza(pizzaId, toppings, priceEur, isVegan);
         pizzaManagerObject.addPizza(myPizza);
       } // end if
+
+        // If user selects option 3
+        if (userSelection == 3) {
+        // Display total number of Pizza objects
+        System.out.println("Total Number of Pizzas: " + pizzaManagerObject.totalPizzas());
+}
+
       if (userSelection == 5) // Quit
 
         System.out.println("Pizza Manager Closing - Goodbye!");
