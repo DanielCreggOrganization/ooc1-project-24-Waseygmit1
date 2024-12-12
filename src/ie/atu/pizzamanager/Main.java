@@ -39,7 +39,7 @@ public class Main {
         String toppings = userInput.next();
         System.out.println("Enter Pizza Price:");
         float priceEur = userInput.nextFloat();
-        System.out.println("Is Pizza Vegan? (true/false1):");
+        System.out.println("Is Pizza Vegan? (true/false):");
         boolean isVegan = userInput.nextBoolean();
 
         // Create Pizza Object
