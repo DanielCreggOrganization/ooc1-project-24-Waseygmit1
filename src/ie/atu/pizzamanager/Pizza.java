@@ -1,57 +1,37 @@
 package ie.atu.pizzamanager;
 
 public class Pizza extends Food {
-
-    // Instance Variables
-    private int pizzaId; // Unique ID
-    private String toppings;
-    private float priceEur;
-    private boolean isVegan;
+    private String toppings; // Specific to Pizza
+    private boolean isVegan; // Specific to Pizza
 
     // Constructor
-    public Pizza(int pizzaId, String toppings, float price, boolean isVegan) {
-        this.pizzaId = pizzaId;
+    public Pizza(int id, String toppings, float price, boolean isVegan) {
+        super(id, "Pizza", price); // Call the Food constructor
         this.toppings = toppings;
-        this.priceEur = price;
         this.isVegan = isVegan;
     }
 
-    // Getter and Setter Methods
-    public int getPizzaId() {
-        return this.pizzaId;
-    }
-
-    public void setPizzaId(int pizzaId) {
-        this.pizzaId = pizzaId;
-    }
-
+    // Getters and Setters
     public String getToppings() {
-        return this.toppings;
+        return toppings;
     }
 
     public void setToppings(String toppings) {
         this.toppings = toppings;
     }
 
-    public float getPrice() {
-        return this.priceEur;
+    public boolean isVegan() {
+        return isVegan;
     }
 
-    public void setPrice(float price) {
-        this.priceEur = price;
-    }
-
-    public boolean getIsVegan() {
-        return this.isVegan;
-    }
-
-    public void setIsVegan(boolean isVegan) {
-        this.isVegan = isVegan;
+    public void setVegan(boolean vegan) {
+        isVegan = vegan;
     }
 
     // Overridden method from Food Interface
     @Override
-    public String showTaste () {
+    public String showTaste() {
         return "Salty ";
     }
 }
+

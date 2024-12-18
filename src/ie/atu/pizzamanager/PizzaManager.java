@@ -1,45 +1,48 @@
 package ie.atu.pizzamanager;
 
-public class PizzaManager {
+import java.util.ArrayList;
 
-    // Create array to store Pizza Objects
-    private Pizza[] pizzas;
+public class PizzaManager {
+    private ArrayList<Pizza> pizzas; // List to store all pizza objects
 
     // Constructor
     public PizzaManager() {
-        //Initialize array to store 10 Pizza objects
-        pizzas = new Pizza[100];
+        this.pizzas = new ArrayList<>();
     }
 
-    // Method to add a Pizza Object to the array 
+    // Add a new pizza to the list
     public void addPizza(Pizza pizza) {
-        // Loop through array to find first empty slot 
-        for (int i = 0; i < pizzas.length; i++) {
-            // Check if slot is empty
-            if (pizzas[i] == null) {
-                // Add Watch Object to array
-                pizzas[i] = pizza;
-                // Exit Loop
-                break;
+        pizzas.add(pizza);
+        System.out.println("Pizza added successfully!");
+    }
+
+    // Delete a pizza by its ID
+    public boolean deletePizza(int id) {
+        for (Pizza pizza : pizzas) {
+            if (pizza.getId() == id) {
+                pizzas.remove(pizza);
+                System.out.println("Pizza with ID " + id + " deleted successfully!");
+                return true;
             }
         }
+        System.out.println("Pizza with ID " + id + " not found.");
+        return false;
     }
 
-// Method to find the total number of Pizza objects in the array
-public int totalPizzas() {
-    // Initialize counter
-    int total = 0;
-    // Loop through array
-    for (int i = 0; i < pizzas.length; i++) {
-        // Check if slot is not empty
-        if (pizzas[i] != null) {
-            // Increment counter
-            total++;
+    // Get the total number of pizzas
+    public int totalPizzas() {
+        return pizzas.size();
+    }
+
+    // Search for a pizza by its ID
+    public Pizza searchPizzaById(int id) {
+        for (Pizza pizza : pizzas) {
+            if (pizza.getId() == id) {
+                return pizza;
+            }
         }
+        return null;
     }
-    // Return total number of Pizza objects
-    return total;
 }
 
-}
 
