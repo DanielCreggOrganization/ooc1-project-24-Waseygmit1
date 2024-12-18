@@ -1,8 +1,12 @@
 package ie.atu.pizzamanager;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class PizzaManager {
+   
+   
     private ArrayList<Pizza> pizzas; // List to store all pizza objects
 
     // Constructor
@@ -19,9 +23,9 @@ public class PizzaManager {
     // Delete a pizza by its ID
     public boolean deletePizza(int id) {
         for (Pizza pizza : pizzas) {
-            if (pizza.getId() == id) {
+            if (pizza.getPizzaId() == id) {
                 pizzas.remove(pizza);
-                System.out.println("Pizza with ID " + id + " deleted successfully!");
+                
                 return true;
             }
         }
@@ -37,12 +41,26 @@ public class PizzaManager {
     // Search for a pizza by its ID
     public Pizza searchPizzaById(int id) {
         for (Pizza pizza : pizzas) {
-            if (pizza.getId() == id) {
+            if (pizza.getPizzaId() == id) {
                 return pizza;
             }
         }
         return null;
     }
+     public Set<String> getAllToppings() {
+        Set<String> toppingsSet = new HashSet<>();
+        for (Pizza pizza : pizzas) {
+            toppingsSet.add(pizza.getToppings());
+        }
+        return toppingsSet; // Returns a set of unique toppings
+    }
 }
 
 
+
+
+    
+
+    
+
+   

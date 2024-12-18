@@ -1,6 +1,7 @@
 package ie.atu.pizzamanager;
 
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
 
@@ -26,15 +27,16 @@ public class Main {
         while (true) {
             // Display Menu with colours 
             System.out.println("");
-            System.out.println(CYAN + "##################################");
-            System.out.println(CYAN + "#       Pizza Manager v1.2       #");
-            System.out.println(CYAN + "##################################");
+            System.out.println(CYAN + "----------------------------------");
+            System.out.println(YELLOW + "|       Pizza Manager v1.2       |");
+            System.out.println(CYAN + "----------------------------------");
             System.out.println(GREEN + "(1) Add a Pizza.");
             System.out.println(YELLOW + "(2) Delete a Pizza.");
             System.out.println(BLUE + "(3) Show total Number of Pizzas.");
             System.out.println(MAGENTA + "(4) Search for a Pizza by ID.");
-            System.out.println(RED + "(5) Quit.");
-            System.out.println(RESET + "Select an option from 1 to 5 and press Enter>");
+            System.out.println(RED + "(5) View All Pizza Toppings.");
+            System.out.println(MAGENTA + "(6) Quit.");
+            System.out.println(RESET + "Select an option from 1 to 6 and press Enter>"); // Updated menu
 
             // Store user Menu option selection
             userSelection = userInput.nextInt();
@@ -56,15 +58,57 @@ public class Main {
                 pizzaManagerObject.addPizza(myPizza);
             } // end if
 
+            if (userSelection == 2) {
+                // Ask user for the pizza ID to delete
+                System.out.println("Enter Pizza Unique ID to delete:");
+                int pizzaIdToDelete = userInput.nextInt();
+
+                // Delete the pizza with the given ID
+                boolean isDeleted = pizzaManagerObject.deletePizza(pizzaIdToDelete);
+                if (isDeleted) {
+                    System.out.println("Pizza with ID " + pizzaIdToDelete + " has been deleted!.");
+                } else {
+                    System.out.println("Pizza with ID " + pizzaIdToDelete + " not found.");
+                }
+            }
+
             // If user selects option 3
             if (userSelection == 3) {
                 // Display total number of Pizza objects
                 System.out.println("Total Number of Pizzas: " + pizzaManagerObject.totalPizzas());
             }
 
-            // If user selects option 5
-            if (userSelection == 5) { // Quit
-                System.out.println(RED + "Pizza Application Closing - Goodbye!" + RESET);
+            // If user selects option 4
+            if (userSelection == 4) {
+                // Ask user for Pizza ID to search
+                System.out.println("Enter Pizza Unique ID to search:");
+                int pizzaIdToSearch = userInput.nextInt();
+
+                // Search for the pizza by ID
+                Pizza foundPizza = pizzaManagerObject.searchPizzaById(pizzaIdToSearch);
+                if (foundPizza != null) {
+                    System.out.println("Pizza Found: " + foundPizza);
+                } else {
+                    System.out.println("Pizza with ID " + pizzaIdToSearch + " not found.");
+                }
+            }
+
+            // If user selects option 5 (View All Pizza Toppings)
+            if (userSelection == 5) {
+                Set<String> allToppings = pizzaManagerObject.getAllToppings();
+                if (allToppings.isEmpty()) {
+                    System.out.println("No pizzas available to display toppings.");
+                } else {
+                    System.out.println("All Pizza Toppings:");
+                    for (String topping : allToppings) {
+                        System.out.println("- " + topping);
+                    }
+                }
+            }
+
+            // If user selects option 6
+            if (userSelection == 6) { // Quit
+                System.out.println(RED + "------ Pizza Application Closing - Goodbye! ------" + RESET);
                 // Close the User Input Scanner
                 userInput.close();
                 break; // Break out of display Menu infinite loop
